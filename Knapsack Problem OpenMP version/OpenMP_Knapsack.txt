@@ -1,0 +1,48 @@
+This program is adopted from a program written by Michael Crawford, written by Zach Goodwyn and Jerome Mueller
+
+This program solves a randomly generated 0-1 knapsack problem of a specified size using a brute force algorithm.
+
+To compile and run:
+
+	Compiling this program requires you to enable openMP. Doing this differs according to the compiler you are using.
+
+Using g++: To compile this program using g++, you must use the -fopenmp flag, as in the following example:
+
+[user@server]$ g++ -fopenmp -O2 openMP_Knapsack.cpp
+
+	By default, this line will still create the default ./a.out executable. You may use any other flags you wish, such as optimization flags and the -o flag.
+
+Using Intel Compiler: 
+
+	Before using the Intel compiler, you must specify its source. Use the command:
+
+[user@server]$ source /opt/intel/bin/compilervars.sh -O2 intel64
+
+	(Note: This command can also be found in the file intel_c_compiler_notes)
+
+	To compile using intels compiler, use the -openmp flag, as in the following:
+
+[user@server]$ icpc -openmp openMP_Knapsack.cpp
+
+	As a friendly reminder, recall that intel automatically uses level 2
+optimizations (as opposed to g++ which will not optimize unless told). Like
+g++, you may use any other relevant flags.
+
+
+Running: This program takes three arguments
+1) The number of items for this knapsack problem
+2) The seed for your random number generator
+3) The number of cores you wish to use (use 0 for openMP default maximum)
+
+	Whether using the g++ or intel complier, simply put the argument after
+the executable, such as:
+
+[user@server]$ ./a.out 13 5 8
+
+A note, the program will assign a maximum weight as well as generating values and weights for each item. The formula for each value follows:
+
+maxWeight = numItems * 5
+weight for each object: random numer 0-29
+value for each object: random number 0-29
+
+To change these, you will need to edit the source code.
